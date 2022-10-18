@@ -19,8 +19,9 @@ const images = express_1.default.Router();
 images.use(checkExist_1.default);
 images.get('', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const name = req.query.filename;
-    const height = parseInt(req.query.height) || undefined;
-    const width = parseInt(req.query.width) || undefined;
+    const height = parseInt(req.query.height);
+    const width = parseInt(req.query.width);
+    // If there is query parameters then process image , if not then direct the user to a simple form to choose how he wants an image to be processed
     if (name) {
         try {
             yield (0, processImg_1.default)(name, height, width);

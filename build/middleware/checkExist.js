@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
 const sharp_1 = __importDefault(require("sharp"));
+sharp_1.default.cache(false);
 // MiddleWare to check the existence of an image
 function checkExist(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -25,6 +26,9 @@ function checkExist(req, res, next) {
             const metadata = yield image.metadata();
             if (metadata.height === height && metadata.width === width) {
                 res.status(200).sendFile(`${name}-thumb.jpg`, { root: 'assets/thumb' });
+            }
+            else {
+                next();
             }
         }
         else

@@ -30,9 +30,9 @@ const process = (input, height, width) => __awaiter(void 0, void 0, void 0, func
         throw new Error('Input file is missing');
     }
     const time = new Date();
-    console.log(`Served Image ${input}-thumb.jpg`, ` At ${time.toLocaleTimeString('en-US', {
+    console.log(`\nServed Image ${input}-thumb.jpg `, `\nDetails: {\n Height: ${height} px \n Width: ${width} px\n}`, `\nAt ${time.toLocaleTimeString('en-US', {
         hour: 'numeric',
         minute: 'numeric'
-    })}`);
+    })}\n`);
 });
 exports.default = process;

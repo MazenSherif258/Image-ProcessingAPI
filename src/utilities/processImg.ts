@@ -9,8 +9,8 @@ import sharp from 'sharp';
  */
 const process = async (
   input: string,
-  height: number | undefined,
-  width: number | undefined
+  height: number,
+  width: number
 ): Promise<void> => {
   try {
     await sharp('./assets/full/' + input + '.jpg')
@@ -23,11 +23,12 @@ const process = async (
   const time = new Date();
 
   console.log(
-    `Served Image ${input}-thumb.jpg`,
-    ` At ${time.toLocaleTimeString('en-US', {
+    `\nServed Image ${input}-thumb.jpg `,
+    `\nDetails: {\n Height: ${height} px \n Width: ${width} px\n}`,
+    `\nAt ${time.toLocaleTimeString('en-US', {
       hour: 'numeric',
       minute: 'numeric'
-    })}`
+    })}\n`
   );
 };
 export default process;
