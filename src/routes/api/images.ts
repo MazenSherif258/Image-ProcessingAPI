@@ -10,7 +10,7 @@ images.get('', async (req, res, next) => {
   const height = parseInt(req.query.height as string);
   const width = parseInt(req.query.width as string);
 
-  // If there is query parametars then process image , if not then direct the user to a simple form to choose how he wants an image to be processed
+  // If there is query parameters then process image , if not then direct the user to a simple form to choose how he wants an image to be processed
   if (req.query.size) {
     try {
       await process(name, height, width);
