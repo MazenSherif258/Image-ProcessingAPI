@@ -7,9 +7,11 @@ images.use(checkExist);
 
 images.get('', async (req, res, next) => {
   const name = req.query.filename as string;
-  const height = parseInt(req.query.height as string) || undefined;
-  const width = parseInt(req.query.width as string) || undefined;
-  if (name) {
+  const height = parseInt(req.query.height as string);
+  const width = parseInt(req.query.width as string);
+
+  // If there is query parametars then process image , if not then direct the user to a simple form to choose how he wants an image to be processed
+  if (req.query.size) {
     try {
       await process(name, height, width);
     } catch (err) {
