@@ -14,12 +14,14 @@ async function checkExist(
   const height = parseInt(req.query.height as string);
   const width = parseInt(req.query.width as string);
 
-  if (fs.existsSync('./assets/thumb/' + name + '-thumb.jpg')) {
-    const image = sharp('./assets/thumb/' + name + '-thumb.jpg');
+  if (fs.existsSync(`./assets/thumb/${name}_${width}_${height}-thumb.jpg`)) {
+    const image = sharp(`./assets/thumb/${name}_${width}_${height}-thumb.jpg`);
     const metadata = await image.metadata();
 
     if (metadata.height === height && metadata.width === width) {
-      res.status(200).sendFile(`${name}-thumb.jpg`, { root: 'assets/thumb' });
+      res.status(200).sendFile(`${name}_${width}_${height}-thumb.jpg`, {
+        root: 'assets/thumb'
+      });
     } else {
       next();
     }

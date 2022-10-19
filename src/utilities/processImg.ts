@@ -15,7 +15,7 @@ const process = async (
   try {
     await sharp('./assets/full/' + input + '.jpg')
       .resize(width, height)
-      .toFile(`./assets/thumb/${input}-thumb.jpg`);
+      .toFile(`./assets/thumb/${input}_${width}_${height}-thumb.jpg`);
   } catch (err) {
     throw new Error('Input file is missing');
   }
@@ -23,8 +23,8 @@ const process = async (
   const time = new Date();
 
   console.log(
-    `\nServed Image ${input}-thumb.jpg `,
-    `\nDetails: {\n Height: ${height} px \n Width: ${width} px\n}`,
+    `\nServed Image ${input}_${width}_${height}-thumb.jpg `,
+    `\nDetails: {\n Width: ${width} px \n Height: ${height} px\n}`,
     `\nAt ${time.toLocaleTimeString('en-US', {
       hour: 'numeric',
       minute: 'numeric'

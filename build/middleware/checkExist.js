@@ -21,11 +21,13 @@ function checkExist(req, res, next) {
         const name = req.query.filename;
         const height = parseInt(req.query.height);
         const width = parseInt(req.query.width);
-        if (fs_1.default.existsSync('./assets/thumb/' + name + '-thumb.jpg')) {
-            const image = (0, sharp_1.default)('./assets/thumb/' + name + '-thumb.jpg');
+        if (fs_1.default.existsSync(`./assets/thumb/${name}_${width}_${height}-thumb.jpg`)) {
+            const image = (0, sharp_1.default)(`./assets/thumb/${name}_${width}_${height}-thumb.jpg`);
             const metadata = yield image.metadata();
             if (metadata.height === height && metadata.width === width) {
-                res.status(200).sendFile(`${name}-thumb.jpg`, { root: 'assets/thumb' });
+                res.status(200).sendFile(`${name}_${width}_${height}-thumb.jpg`, {
+                    root: 'assets/thumb'
+                });
             }
             else {
                 next();

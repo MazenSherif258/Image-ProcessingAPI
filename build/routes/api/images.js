@@ -29,7 +29,9 @@ images.get('', (req, res, next) => __awaiter(void 0, void 0, void 0, function* (
         catch (err) {
             next('Error at sharp processig ' + err);
         }
-        res.status(200).sendFile(`${name}-thumb.jpg`, { root: 'assets/thumb' });
+        res.status(200).sendFile(`${name}_${width}_${height}-thumb.jpg`, {
+            root: 'assets/thumb'
+        });
     }
     else {
         res.status(200).sendFile('simpleForm.html', { root: './basicFrontend' });
